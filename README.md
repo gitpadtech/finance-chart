@@ -48,3 +48,9 @@ npm run dist
 - [ ] 分时当前价格指示动画
 - [ ] 实现缩放事件
 - [ ] 开发与示例文档
+
+### donate
+
+赏块披萨, 支持开发
+
+[微信赞赏码](https://github.com/dz-web/finance-chart/issues/1)
