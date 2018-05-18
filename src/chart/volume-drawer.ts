@@ -125,7 +125,8 @@ export class VolumeDrawer extends Drawer {
     this.drawYAxis()
   }
   protected drawYAxis() {
-    const tickValues = uniq(divide(0, this.maxValue, 4)).map(n => ({ value: Math.round(n), color: VolumeDrawer.theme.yTick }));
+    const tickValues = uniq(divide(0, this.maxValue, 3)).map(n => ({ value: Math.round(n), color: VolumeDrawer.theme.yTick }));
+    tickValues.shift() // remove first item, 0 volume
     const maxTickValue =
       max(tickValues, d => d.value) / VolumeDrawer.proportion
     const useWUnit = maxTickValue > 10000
@@ -139,13 +140,11 @@ export class VolumeDrawer extends Drawer {
       VolumeDrawer.theme.gridLine,
       (v, i) => {
         // const scaledV = v / VolumeDrawer.proportion
-        if (i === 0) {
-          if (useWUnit) {
-            return `万${VolumeDrawer.unit}`
-          }
-          return VolumeDrawer.unit
+        let r = shortenVolume(v)
+        if (useWUnit && i === tickValues.length - 1) {
+          r =  `${r}万${VolumeDrawer.unit}`
         }
-        return shortenVolume(v)
+        return r
       }
     )
   }

@@ -122,7 +122,7 @@ export class CandleStickDrawer extends Drawer {
     }
   }
   public getXAxisDetail(i: number): string {
-    return this.xTickFormatter(i)
+    return this.xTickDetailFormatter(i, this.data)
   }
   get MAIndicators() {
     return Object.getPrototypeOf(this).constructor.MAIndicators as MAIndicator[]
@@ -154,7 +154,7 @@ export class CandleStickDrawer extends Drawer {
     )
   }
   protected drawXAxis() {
-    let tickValues = uniq(divide(0, this.chart.count() - 1, 5)
+    let tickValues = uniq(divide(0, this.count() - 1, 4)
       .map(t => Math.floor(t)))
     drawXAxis(
       this.context,
@@ -164,16 +164,31 @@ export class CandleStickDrawer extends Drawer {
       this.chart.options.resolution,
       true,
       CandleStickDrawer.theme.gridLine,
-      this.xTickFormatter,
+      (v: number) => {
+        return this.xTickFormatter(v, this.data)
+      },
       CandleStickDrawer.theme.xTick
     )
   }
-  protected xTickFormatter(value: number) {
-    const d = this.data[value]
+  protected xTickFormatter(i: number, data: CandleStickData[]) {
+    const d = data[i]
     if (d) {
-      return formateDate(d.time, 'MM/dd')
+      return formateDate(d.time, this.xTickFormat())
     }
     return ''
+  }
+  protected xTickFormat() {
+    return 'yyyy/MM'
+  }
+  protected xTickDetailFormatter(i: number, data: CandleStickData[]) {
+    const d = data[i]
+    if (d) {
+      return formateDate(data[i].time, this.xTickDetailFormat())
+    }
+    return ''
+  }
+  protected xTickDetailFormat() {
+    return 'yyyy/MM/dd'
   }
   protected drawAxes() {
     this.drawXAxis()
