@@ -277,9 +277,9 @@ export class Chart {
     if (!this.requestAnimationFrameId) {
       this.requestAnimationFrameId = requestAnimationFrame(() => {
         this.context.clearRect(0, 0, this.width, this.height)
-        if (process.env.NODE_ENV === 'development') {
-          console.time('rendering cost');
-        }
+        // if (process.env.NODE_ENV === 'development') {
+        //   console.time('rendering cost');
+        // }
         this.context.fillStyle = Chart.theme.background
         this.context.fillRect(0, 0, this.width, this.height);
         this.mainDrawer && this.mainDrawer.draw()
@@ -290,9 +290,9 @@ export class Chart {
           this.drawFrontSight();
         }
 
-        if (process.env.NODE_ENV === 'development') {
-          console.timeEnd('rendering cost');
-        }
+        // if (process.env.NODE_ENV === 'development') {
+        //   console.timeEnd('rendering cost');
+        // }
       })
     }
   }
