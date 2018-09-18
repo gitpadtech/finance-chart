@@ -1,6 +1,4 @@
 [![Build Status](https://travis-ci.org/gitpadtech/finance-chart.svg?branch=master)](https://travis-ci.org/gitpadtech/finance-chart)
-[![Coverage Status](https://coveralls.io/repos/github/gitpadtech/finance-chart/badge.svg?branch=master)](https://coveralls.io/github/gitpadtech/finance-chart?branch=master)
-# Introduction
 
 Awesome finance chart
 
