@@ -3,7 +3,7 @@ import { divide } from '../algorithm/divide';
 import { DrawerPlugin, DrawerPluginConstructor } from '../chart/drawer-plugin';
 import { drawYAxis, TickValueDescription } from '../paint-utils/index';
 
-export function createYAxisPlugin(ticks: number | number[] = 5): DrawerPluginConstructor {
+export function createYAxisPlugin(ticks: number | number[] = 5, precision = 2): DrawerPluginConstructor {
   return class YAxisPlugin extends DrawerPlugin {
     public predraw() {
       const host = this.pluginHost;
@@ -28,6 +28,7 @@ export function createYAxisPlugin(ticks: number | number[] = 5): DrawerPluginCon
         host.chart.options.resolution,
         true,
         host.chart.theme.gridLine,
+        (v: number) => v.toFixed(precision),
       );
     }
   };

@@ -36,6 +36,7 @@ export const TimeSeriesBlackTheme = {
 };
 
 export class TimeSeriesDrawer extends Drawer {
+  public static precision = 2;
   public theme: TimeSeriesTheme;
   public titleDrawer: ChartTitle;
   public range: MovableRange<TimeSeriesData>;
@@ -154,6 +155,7 @@ export class TimeSeriesDrawer extends Drawer {
       this.chart.options.resolution,
       true,
       this.theme.gridLine,
+      (v: number) => v.toFixed(TimeSeriesDrawer.precision),
     );
     drawYAxis(
       this.context,

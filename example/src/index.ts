@@ -26,6 +26,7 @@ import MOCK_TIME_SHARE from './mock-time-series';
 
 VolumeDrawer.proportion = 100;
 VolumeDrawer.unit = '手';
+TimeSeriesDrawer.precision = 2;
 
 function createTimeSeries() {
   const TimeSeriesChart = new Chart({
@@ -101,7 +102,7 @@ function createKLine() {
       options: {
         defaultExclusivePlugins: 0,
         plugins: [
-          createYAxisPlugin(),
+          createYAxisPlugin(5, 2),
         ],
         exclusivePlugins: [
           createMAPlugin([
